@@ -1,4 +1,4 @@
-# NixOS configuration for XPS 15
+# nixos-xps
 
 Declarative NixOS and home manager configuration for a Dell XPS 15 9500
 
