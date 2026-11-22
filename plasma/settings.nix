@@ -10,6 +10,16 @@
       "preferred://filemanager"
       "applications:kitty.desktop"
     ];
+    favorites = [
+      "preferred://browser"
+      "applications:systemsettings.desktop"
+      "applications:org.kde.dolphin.desktop"
+      "applications:org.kde.discover.desktop"
+      "applications:code.desktop"
+      "applications:kitty.desktop"
+      "applications:org.kde.krdc.desktop"
+      "applications:plexamp.desktop"
+    ];
     color = "#391A09";
   };
 
