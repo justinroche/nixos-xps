@@ -2,7 +2,10 @@
   settings = import ./settings.nix;
 in {
   programs.plasma = {
-    configFile.kdeglobals.Sounds.Theme = "PS5";
+    configFile.kdeglobals = {
+      Sounds.Theme = "PS5";
+      "KFileDialog Settings"."Show hidden files" = true;
+    };
 
     input = {
       touchpads = [
