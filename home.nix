@@ -130,6 +130,7 @@
       syntaxHighlighting.enable = true;
       shellAliases = {
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos-xps#justin-xps";
+        ssh-thinkcentre = "ssh -A justin@192.168.1.159";
       };
 
       initContent = lib.concatStringsSep "\n" [
