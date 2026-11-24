@@ -28,7 +28,9 @@
     cargo
     rustc
     rustfmt
+    rsync
     tree
+    unzip
     vscode
     wget
     wl-clipboard
