@@ -103,6 +103,15 @@
       ];
     };
 
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      settings.tc = {
+        HostName = "192.168.1.159";
+        User = environment.user.name;
+      };
+    };
+
     starship = {
       enable = true;
       enableBashIntegration = true;
@@ -136,7 +145,6 @@
       syntaxHighlighting.enable = true;
       shellAliases = {
         rebuild = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_DIR#${environment.host.name}";
-        ssh-thinkcentre = "ssh -A ${environment.user.name}@192.168.1.159";
       };
 
       initContent = lib.concatStringsSep "\n" [
