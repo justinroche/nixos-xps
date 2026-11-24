@@ -20,7 +20,7 @@ in {
     };
 
     workspace.wallpaperSlideShow = {
-      path = "${config.home.homeDirectory}/${settings.wallpaper.directory}";
+      path = ["${config.home.homeDirectory}/${settings.wallpaper.directory}"];
       interval = settings.wallpaper.interval;
     };
   };
