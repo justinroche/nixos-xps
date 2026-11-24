@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  environment,
   ...
 }: {
   imports = [
@@ -48,28 +49,28 @@
   nix.settings = {
     auto-optimise-store = true;
     experimental-features = ["nix-command" "flakes"];
-    trusted-users = ["root" "justin"];
+    trusted-users = ["root" environment.user.name];
     trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="];
   };
 
   sops = {
     defaultSopsFile = ./secrets/users.yaml;
-    age.keyFile = "/home/justin/.config/sops/age/keys.txt";
-    secrets.justin-password.neededForUsers = true;
+    age.keyFile = environment.paths.sopsAgeKey;
+    secrets."${environment.user.name}-password".neededForUsers = true;
   };
 
   # Network
-  networking.hostName = "justin-xps";
+  networking.hostName = environment.host.name;
   networking.networkmanager.enable = true;
 
   # Locale
-  time.timeZone = "America/Chicago";
-  i18n.defaultLocale = "en_US.UTF-8";
-  console.keyMap = "us";
+  time.timeZone = environment.locale.timeZone;
+  i18n.defaultLocale = environment.locale.defaultLocale;
+  console.keyMap = environment.locale.keyMap;
 
   # Desktop
   services.xserver.enable = true;
-  services.xserver.xkb.layout = "us";
+  services.xserver.xkb.layout = environment.locale.keyMap;
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.enable = true;
 
@@ -93,10 +94,10 @@
   };
 
   # Users
-  users.users.justin = {
+  users.users.${environment.user.name} = {
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager"]; # wheel = sudo access
-    hashedPasswordFile = config.sops.secrets.justin-password.path;
+    hashedPasswordFile = config.sops.secrets."${environment.user.name}-password".path;
     shell = pkgs.zsh;
   };
 

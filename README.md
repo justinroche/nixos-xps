@@ -7,6 +7,7 @@ Declarative NixOS and home manager configuration for a Dell XPS 15 9500
 - `flake.nix` - system definition.
 - `configuration.nix` - NixOS services, boot, networking, user setup.
 - `home.nix` - home manager packages.
+- `environment.nix` - canonical user, host, environment values.
 - `plasma/` - Plasma desktop, panel, app settings.
 - `nvim/`, `tmux/`, `zsh/` - editor and shell configuration.
 - `secrets/` - sops-encrypted secrets.
@@ -23,7 +24,8 @@ nix flake check
 Apply the config:
 
 ```sh
-sudo nixos-rebuild switch --flake ~/nixos-xps#justin-xps
+cd /path/to/nixos-xps
+sudo nixos-rebuild switch --flake .#justin-xps
 ```
 
 Update flake inputs:

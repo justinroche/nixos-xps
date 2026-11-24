@@ -2,6 +2,7 @@
   pkgs,
   pkgsUnstable,
   lib,
+  environment,
   ...
 }: {
   imports = [
@@ -9,6 +10,8 @@
   ];
 
   home.stateVersion = "26.05"; # never change
+  home.username = environment.user.name;
+  home.homeDirectory = environment.user.homeDirectory;
 
   home.packages = with pkgs; [
     alejandra
@@ -35,6 +38,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    NIXOS_CONFIG_DIR = environment.repository.directory;
   };
 
   home.file.".local/share/sounds/PS5" = {
@@ -59,8 +63,8 @@
       enable = true;
       settings = {
         user = {
-          name = "Justin Roche";
-          email = "justinroche03@gmail.com";
+          name = environment.user.fullName;
+          email = environment.user.email;
         };
         core.editor = "nvim";
       };
@@ -129,8 +133,8 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       shellAliases = {
-        rebuild = "sudo nixos-rebuild switch --flake ~/nixos-xps#justin-xps";
-        ssh-thinkcentre = "ssh -A justin@192.168.1.159";
+        rebuild = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_DIR#${environment.host.name}";
+        ssh-thinkcentre = "ssh -A ${environment.user.name}@192.168.1.159";
       };
 
       initContent = lib.concatStringsSep "\n" [

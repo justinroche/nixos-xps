@@ -37,9 +37,12 @@
     nixvim,
     sops-nix,
     ...
-  }: {
-    nixosConfigurations.justin-xps = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+  }: let
+    environment = import ./environment.nix;
+  in {
+    nixosConfigurations.${environment.host.name} = nixpkgs.lib.nixosSystem {
+      system = environment.host.system;
+      specialArgs = {inherit environment;};
       modules = [
         ./configuration.nix
         nixos-hardware.nixosModules.dell-xps-15-9500-nvidia
@@ -49,13 +52,14 @@
         home-manager.nixosModules.home-manager
         {
           home-manager.extraSpecialArgs = {
+            inherit environment;
             pkgsUnstable = import nixpkgs-unstable {
-              system = "x86_64-linux";
+              system = environment.host.system;
             };
           };
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.justin = {
+          home-manager.users.${environment.user.name} = {
             imports = [
               nixvim.homeModules.nixvim
               plasma-manager.homeModules.plasma-manager
