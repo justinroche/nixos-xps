@@ -12,6 +12,11 @@
 - swap behind: `{`, swap ahead: `}`
 - close: `x`
 
+## sessions
+
+- detach: `d`, list: `tmux list-sessions`
+- attach: `tmux a -t <session_name>`
+
 # nvim
 
 - yank line: `yy`, chg word: `cw`, del char: `x`
