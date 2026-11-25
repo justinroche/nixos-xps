@@ -144,6 +144,7 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       shellAliases = {
+        rsc = "rsync -a --no-owner --no-group";
         rebuild = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_DIR#${environment.host.name}";
       };
 
