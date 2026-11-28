@@ -110,6 +110,10 @@
         HostName = environment.hosts.thinkcentre.tailscaleHostName;
         User = environment.user.name;
       };
+      settings.ub = {
+        HostName = environment.hosts.elitedesk.tailscaleHostName;
+        User = environment.user.name;
+      };
     };
 
     starship = {

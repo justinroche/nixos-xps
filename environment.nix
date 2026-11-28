@@ -12,6 +12,7 @@ rec {
   };
 
   hosts.thinkcentre.tailscaleHostName = "justin-thinkcentre.tailc87c3a.ts.net";
+  hosts.elitedesk.tailscaleHostName = "justin-ubuntu.tailc87c3a.ts.net";
 
   repository = rec {
     name = "nixos-xps";
