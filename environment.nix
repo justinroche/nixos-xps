@@ -11,6 +11,8 @@ rec {
     system = "x86_64-linux";
   };
 
+  hosts.thinkcentre.tailscaleHostName = "justin-thinkcentre.tailc87c3a.ts.net";
+
   repository = rec {
     name = "nixos-xps";
     directory = "${user.homeDirectory}/${name}";

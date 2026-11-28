@@ -107,7 +107,7 @@
       enable = true;
       enableDefaultConfig = false;
       settings.tc = {
-        HostName = "192.168.1.159";
+        HostName = environment.hosts.thinkcentre.tailscaleHostName;
         User = environment.user.name;
       };
     };
