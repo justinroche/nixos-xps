@@ -62,6 +62,10 @@
   # Network
   networking.hostName = environment.host.name;
   networking.networkmanager.enable = true;
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
 
   # Locale
   time.timeZone = environment.locale.timeZone;
